@@ -66,6 +66,11 @@ func getAbsolutePath(relativePath string) string {
 func searchDirectory(dir string, term string) {
 	dirContents, err := ioutil.ReadDir(dir)
 	if err != nil {
+		// Skip folders with restricted access.
+		if err.(*os.PathError).Err.Error() == os.ErrPermission.Error() {
+			return
+		}
+
 		log.Fatalf("Unable to open dir %s\n", dir)
 	}
 
