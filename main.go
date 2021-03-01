@@ -41,15 +41,10 @@ func main() {
 func getAbsolutePath(relativePath string) string {
 	var absSearchDir string
 
-	homeDir, err := os.UserHomeDir()
-	if err != nil {
-		log.Fatal("Unable to get user home directory.\n", err)
-	}
-
-	// Prepend the current working directory to the search directory, unless
-	// search directory begins with `~`.
-	if strings.HasPrefix(relativePath, homeDir) {
-		absSearchDir = filepath.Clean(relativePath)
+	// If path is relative path, prepend the current working directory.
+	relativePath = filepath.Clean(relativePath)
+	if filepath.IsAbs(relativePath) {
+		absSearchDir = relativePath
 	} else {
 		cwd, err := os.Getwd()
 		if err != nil {
