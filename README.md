@@ -19,7 +19,10 @@ git clone https://github.com/n-ulricksen/gofind.git
 Build the binary
 
 ```sh
-go build -o gofind .
+go build .
+
+# you can optionally specify the output path with '-o'
+go build -o /usr/local/bin/gofind .
 ```
 
 ## Usage
