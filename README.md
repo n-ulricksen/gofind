@@ -14,6 +14,7 @@ Clone the source code
 
 ```sh
 git clone https://github.com/n-ulricksen/gofind.git
+cd gofind
 ```
 
 Build the binary
